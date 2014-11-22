@@ -1,0 +1,21 @@
+jquery.validate.js 中 放弃自带的remote 方法，在jquery.validate.method.js中添加自带remote方法；
+remote验证可以不验证自带原值（dom中加入old="<?原值?>"）；
+
+放弃dwz.ajax.js;使用d1.ajax.zend2.js 专门针对zend2的form返回结果做优化，可以支持服务端错误消息客户端友好展示；
+
+dwz.database.js 中
+selectedTodo 函数中代码 return $.map(ids.split(','), function(val, i) {return {name: selectedIds, value: val};})
+修复为 var mapData={};mapData[selectedIds]=ids.split(',');return mapData;
+itemDetail 函数中 349行 加入判断，如果fieldclass 中有readonly，则input 限制为inputonly   增加判断 field.name.endsWith("]")
+tdHtml 中lookup 及 attach
+strDot 为前台传入，不自动变为.
+
+bringBack  函数中 9  行 php 使用[]取值 判断当suffix为"]" 时 自动补全 "[]"
+
+dwz.dialog 61行 修复 option为op
+
+
+dwz.navTab.js 中 _reload方法 在有form存在时使用post提交
+$panel.loadUrl(url, args, function(){navTab._loadUrlCallback($panel);}); //修复前
+$panel.ajaxUrl({type:"POST",url:url, data:args, callback:function(response){navTab._loadUrlCallback($panel);}});    //修复后
+

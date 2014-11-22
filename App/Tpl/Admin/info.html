@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="/css/zh-cn-system.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.content td,.content th{ border:1px solid #ccc;}
+</style>
+</head>
+
+<body>
+<div id="main_frameid" class="pad-10 display" style="_margin-right:-12px;_width:98.9%;">
+<div class="col-2 col-auto" style="width:48%">
+        <h6>统计</h6>  <br />
+         <div class="content">
+        	 <table width="55%" border="0" cellpadding="1"    cellspacing="2">
+  <tr>
+    <th width="36%" height="25" bgcolor="#FFFFFF">统计</th>
+    <th width="28%" bgcolor="#FFFFFF">昨天</th>
+    <th width="36%" bgcolor="#FFFFFF">今天</th>
+  </tr>
+  <tr>
+    <td height="25" align="right" bgcolor="#FFFFFF">注册数：</td>
+    <td bgcolor="#FFFFFF">&nbsp;<?php echo $info['yes_reg_num']-$info['today_reg_num']  ?></td>
+    <td bgcolor="#FFFFFF">&nbsp;<?php echo $info['today_reg_num'] ?></td>
+  </tr>
+  <tr>
+    <td height="25" align="right" bgcolor="#FFFFFF">登录数：</td>
+    <td bgcolor="#FFFFFF">&nbsp;<?php echo $info['yes_login_num']-$info['today_login_num']  ?></td>
+    <td bgcolor="#FFFFFF">&nbsp;<?php echo $info['today_login_num'] ?></td>
+  </tr>
+  <tr>
+    <td height="25" align="right" bgcolor="#FFFFFF">私信数：</td>
+    <td bgcolor="#FFFFFF">&nbsp;<?php echo $info['yes_msg_num'] - $info['today_msg_num'] ?></td>
+    <td bgcolor="#FFFFFF">&nbsp;<?php echo $info['today_msg_num'] ?></td>
+  </tr>
+  <tr>
+    <td height="25" align="right" bgcolor="#FFFFFF">关注数：</td>
+    <td bgcolor="#FFFFFF">&nbsp;<?php echo $info['yes_fri_num']- $info['today_fri_num'] ?></td>
+    <td bgcolor="#FFFFFF">&nbsp;<?php echo $info['today_fri_num'] ?></td>
+  </tr>
+  <tr>
+    <td height="25" align="right" bgcolor="#FFFFFF">短信余额：</td>
+    <td colspan="2" bgcolor="#FFFFFF"><script language="javascript" src="/index.php/index/getnotemoney"> </script></td>
+    </tr>
+           </table>
+
+</div>	
+        <br />
+  </div>   <div class="bk10"></div><div class="col-2 lf mr10" style="width:48%">
+        <h6>我的个人信息</h6>
+        <div class="content">
+        您好，<?php echo $adm_info['name'] ?><br />
+        所属角色：管理员 <br />
+        <div class="bk20 hr"><hr /></div>
+            上次登录时间： <?php echo date('Y-m-d H:i',$adm_info['LoginTime']) ?><br />
+           <br />
+        </div>
+  </div>
+  
+      <div class="bk10"></div>
+   
+</div>
+</body>
+</html>

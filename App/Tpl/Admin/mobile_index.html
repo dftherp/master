@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>乐遇网站管理系统</title>
+<link href="/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="/css/zh-cn-system.css" rel="stylesheet" type="text/css" />
+<style> 
+.objbody{overflow: hidden}
+</style>
+<script language="javascript" type="text/javascript" src="/js/jquery.min.js"></script>
+ 
+</head>
+<body>
+ 
+<div class="header">
+	<div class="logo lf"><a href="javascript:;"><span class="invisible">网站内容管理系统</span></a></div>
+    <div class="rt-col">
+    	<div class="tab_style white cut_line text-r"> <a href="http://www.leyu365.com" target="_blank">网站前台</a>
+        </div>
+    </div>
+    <div class="col-auto">
+    	<div class="white cut_line">您好！ <?php echo $adm_info['name'] ?><span>|</span><a onclick="return confirm('确定要退出管理平台吗？')" href="/index.php/index/loginout">[退出]</a> </div>
+        <ul class="nav white" id="top_menu">
+		       <li id="_M0" class="top_menu"><a href="/index.php/index/info" target="rightMain" hidefocus="true" style="outline:none;" >后台首页</a></li> 
+              
+                <li id="_M2" class="top_menu"><a href="javascript:;" hidefocus="true" style="outline:none;" onClick="toggleMenu(2,'thread');">游记管理</a></li> 
+               <li id="_M5" class="top_menu"><a href="javascript:;" hidefocus="true" style="outline:none;" onClick="toggleMenu(5,'cai');">旅游管理</a></li> 
+                <li id="_M1" class="top_menu"><a href="javascript:;" hidefocus="true" style="outline:none;" onClick="toggleMenu(1,'douban');">群发助手</a></li>  
+                
+               <?php if($adm_info['class']=='1'){?>   <li id="_M6" class="top_menu"><a href="javascript:;" hidefocus="true" style="outline:none;" onClick="toggleMenu(6,'cai');">管理员专项</a></li> 
+               <li id="_M4" class="top_menu"><a href="javascript:;" hidefocus="true" style="outline:none;" onClick="toggleMenu(4,'user');">会员管理</a></li>
+                
+                 <!--li id="_M1" class="top_menu"><a href="javascript:;" hidefocus="true" style="outline:none;" onClick="toggleMenu(1,'group');">小组管理</a></li>
+                <li id="_M3" class="top_menu"><a href="javascript:;" hidefocus="true" style="outline:none;" onClick="toggleMenu(3,'pic');">酷图管理</a></li>   
+              
+                 <li id="_M0" class="on top_menu"><a href="javascript:;" hidefocus="true" style="outline:none;" onClick="toggleMenu(0,'index');">版块管理</a></li>
+                <li id="_M5" class="top_menu"><a href="javascript:;" hidefocus="true" style="outline:none;" onClick="toggleMenu(5,'dian');">点名管理</a></li>
+                <li id="_M6" class="top_menu"><a href="javascript:;" hidefocus="true" style="outline:none;" onClick="toggleMenu(6,'cai');">竞猜管理</a></li>
+               
+                
+                <li class="tab_web"><a href="javascript:;"><span>标签采集设置</span></a></li-->
+      <?php }?>  </ul>
+    </div>
+</div>
+
+<div id="content" >
+	<div class="col-left left_menu">
+    	<div id="Scroll">
+        
+        <div id="leftMain2" style="display:">
+        <h3 class="f14"><span class="switchs cu on" title="展开与收缩"></span>游记管理</h3>
+        <ul>
+        <!--li id="_MP36" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(36,'/index.php/threads/mylistth',0,this,'#');" hidefocus="true" style="outline: medium none;">我的游记</a></li-->
+        <li id="_MP30" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(30,'/index.php/threads/addth',0,this,'#');" hidefocus="true" style="outline: medium none;">添加游记</a></li>
+        <li id="_MP34" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(34,'/index.php/threads/listpost',0,this,'#');" hidefocus="true" style="outline: medium none;">所有回复</a></li>
+          <li id="_MP33" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(33,'/index.php/threads/addpost/fid/0/tid/0',0,this,'#');" hidefocus="true" style="outline: medium none;">添加回复</a></li>
+        <li id="_MP31" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(31,'/index.php/threads/listth',0,this,'/index.php/groups/subgroups');" hidefocus="true" style="outline: medium none;">所有游记</a></li>             
+        
+                 <!--li id="_MP32" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(32,'/index.php/threads/thalbum',0,this,'#');" hidefocus="true" style="outline: medium none;">图贴管理</a></li-->
+                 
+            
+                 
+        </ul> 
+        
+         
+      
+         </div>
+         
+         
+         
+         <div id="leftMain5" style="display:">
+        <h3 class="f14"><span class="switchs cu on" title="展开与收缩"></span>旅游管理</h3>
+        <ul>
+        
+        <li id="_MP60" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(60,'/index.php/lvyou/add',0,this,'#');" hidefocus="true" style="outline: medium none;">添加线路</a></li>
+        
+        <li id="_MP67" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(67,'/index.php/lvyou/adddate',0,this,'#');" hidefocus="true" style="outline: medium none;">添加活动日期</a></li>
+             <li id="_MP68" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(68,'/index.php/lvyou/datelist',0,this,'#');" hidefocus="true" style="outline: medium none;">活动日期列表</a></li>
+        <li id="_MP61" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(61,'/index.php/lvyou/index',0,this,'');" hidefocus="true" style="outline: medium none;">管理旅游线路</a></li>
+             <li id="_MP66" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(66,'/index.php/lvyou/post',0,this,'');" hidefocus="true" style="outline: medium none;">评论管理</a></li>
+         <li id="_MP66" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(66,'/index.php/lvyou/fields',0,this,'');" hidefocus="true" style="outline: medium none;">报名追加资料</a></li>
+        
+        <li id="_MP62" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(62,'/index.php/lvyou/baominglist',0,this,'');" hidefocus="true" style="outline: medium none;">报名管理</a></li>
+        <li id="_MP64" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(64,'/index.php/lvyou/exitbaoming',0,this,'');" hidefocus="true" style="outline: medium none;">退款管理</a></li>
+         <li id="_MP63" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(63,'/index.php/lvyou/adminuser',0,this,'');" hidefocus="true" style="outline: medium none;">领队设置</a></li>
+          <li id="_MP65" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(65,'/index.php/lvyou/city',0,this,'');" hidefocus="true" style="outline: medium none;">管理目的地</a></li>
+         </ul>
+          
+         </div>
+         <div id="leftMain1" style="display:none">
+        <h3 class="f14"><span class="switchs cu on" title="展开与收缩"></span>豆瓣发帖子</h3>
+        <ul>
+        
+        <li id="_MP70" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(70,'/index.php/douban/dblogin',0,this,'#');" hidefocus="true" style="outline: medium none;">登录豆瓣</a></li>
+        <li id="_MP71" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(71,'/index.php/douban/dbmail',0,this,'');" hidefocus="true" style="outline: medium none;">发豆邮</a></li>
+        <li id="_MP72" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(72,'/index.php/douban/dbcomment',0,this,'');" hidefocus="true" style="outline: medium none;">回复帖子</a></li>
+         <li id="_MP73" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(73,'/index.php/douban/dbtopic',0,this,'');" hidefocus="true" style="outline: medium none;">豆瓣发帖</a></li>
+            <li id="_MP74" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(74,'/index.php/douban/houseoutLoing',0,this,'');" hidefocus="true" style="outline: medium none;">8264发帖</a></li>
+         </ul>
+          
+         </div>
+         <?php if($adm_info['class']=='1'){?>
+         
+         
+             
+         
+         
+        
+           <div id="leftMain4" style="display:none">
+        <h3 class="f14"><span class="switchs cu on" title="展开与收缩"></span>会员设置</h3>
+        <ul>
+        
+        <li id="_MP50" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(50,'/index.php/users/index',0,this,'#');" hidefocus="true" style="outline: medium none;">用户列表</a></li>
+       
+         <li id="_MP54" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(54,'/index.php/users/message',0,this,'');" hidefocus="true" style="outline: medium none;">用户私信</a></li>
+        
+         <li id="_MP56" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(56,'/index.php/users/openuser',0,this,'');" hidefocus="true" style="outline: medium none;"> 开放平台用户</a></li> <!--li id="_MP51" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(51,'/index.php/users/force',0,this,'');" hidefocus="true" style="outline: medium none;">马甲用户</a></li--> 
+        <!--li id="_MP52" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(52,'/index.php/users/loing',0,this,'');" hidefocus="true" style="outline: medium none;">最近登录 </a></li>        
+        <li id="_MP53" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(53,'/index.php/users/head',0,this,'');" hidefocus="true" style="outline: medium none;">用户头像</a></li--> <!--li id="_MP55" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(55,'/index.php/users/groups',0,this,'');" hidefocus="true" style="outline: medium none;"> 用户组管理</a></li-->
+        </ul> 
+        
+         </div>
+         
+         <!--
+             <div id="leftMain5" style="display:">
+        <h3 class="f14"><span class="switchs cu on" title="展开与收缩"></span>问题设置</h3>
+        <ul>
+        
+        <li id="_MP60" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(60,'/index.php/wenda/add',0,this,'#');" hidefocus="true" style="outline: medium none;">新建问题</a></li>
+        <li id="_MP61" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(61,'/index.php/wenda/tiku',0,this,'');" hidefocus="true" style="outline: medium none;">问题库 </a></li>
+         </ul>
+          <h3 class="f14"><span class="switchs cu on" title="展开与收缩"></span>点名管理</h3>
+        <ul>
+        
+        <li id="_MP63" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(63,'/index.php/wenda/index',0,this,'#');" hidefocus="true" style="outline: medium none;">点名列表</a></li>
+        <li id="_MP64" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(64,'/index.php/wenda/adddm',0,this,'#');" hidefocus="true" style="outline: medium none;">马甲点名 </a></li>
+         </ul>
+         </div>     
+         
+         
+          <div id="leftMain6" style="display:">
+        <h3 class="f14"><span class="switchs cu on" title="展开与收缩"></span>竞猜设置</h3>
+        <ul>
+        <li id="_MP70" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(70,'/index.php/guess/addnew',0,this,'');" hidefocus="true" style="outline: medium none;">新建竞猜</a></li>
+        <li id="_MP71" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(71,'/index.php/guess/index',0,this,'');" hidefocus="true" style="outline: medium none;">竞猜管理</a></li></ul>
+       
+         </div>  
+         -->
+     
+     
+         <div id="leftMain6" style="display:">
+         <h3 class="f14"><span class="switchs cu on" title="展开与收缩"></span>管理员专项</h3>
+         <ul>      
+          <li id="_MP80" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(80,'/index.php/admin/ulist',0,this,'#');" hidefocus="true" style="outline: medium none;">人员管理</a></li>
+          
+               <li id="_MP82" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(82,'/index.php/index/search',0,this,'');" hidefocus="true" style="outline: medium none;">搜索日志</a></li>
+          
+   <li id="_MP86" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(86,'/index.php/admin/link',0,this,'#');" hidefocus="true" style="outline: medium none;">友情链接</a></li>    
+      <li id="_MP87" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(87,'/index.php/admin/feeback',0,this,'#');" hidefocus="true" style="outline: medium none;">反馈意见</a></li>  
+        <li id="_MP88" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(88,'/index.php/admin/upimgindex',0,this,'#');" hidefocus="true" style="outline: medium none;">游记首页动画</a></li>  
+        
+         <li id="_MP89" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(89,'/index.php/admin/upimgbanner',0,this,'#');" hidefocus="true" style="outline: medium none;">网站首页Banner</a></li>    
+          <li id="_MP90" class="sub_menu"><a href="javascript:;" onclick="_jumpURL(90,'/index.php/adver/index',0,this,'#');" hidefocus="true" style="outline: medium none;">广告管理</a></li>    
+        </ul> 
+         </div>
+         
+         <?php }?>
+		<script type="text/javascript"> 
+				$(".switchs").each(function(i){
+					var ul = $(this).parent().next();
+					$(this).click(
+					function(){
+						if(ul.is(':visible')){
+							ul.hide();
+							$(this).removeClass('on');
+								}else{
+							ul.show();
+							$(this).addClass('on');
+						}
+					})
+				});
+				</script>
+                
+              
+     </div>
+        <a href="javascript:;" id="openClose" style="outline-style: none; outline-color: invert; outline-width: medium;" hideFocus="hidefocus" class="open" title="展开与关闭"><span class="hidden">展开</span></a>
+    </div>
+	<div class="col-1 lf cat-menu" id="display_center_id" style="display:none" height="100%">
+	<div class="content">
+        	<iframe name="center_frame" id="center_frame" src="" frameborder="false" scrolling="auto" style="border:none" width="100%" height="auto" allowtransparency="true"></iframe>
+            </div>
+        </div>
+
+    <div class="col-auto mr8">
+    <div class="crumbs">
+   <div style=" width:230px;float:left"> 当前：<span id="current_pos">首页</span></div>
+    <div class="shortcut">  
+  
+  <form onsubmit="return setvelkwd()" method="get" action="/index.php/index/select" target="rightMain">
+     <strong>搜索</strong> <select name="select">
+      <option selected="selected" value="Uname">用户名</option>
+      <option value="Uid">用户UID</option>
+      <option value="uname">姓名</option>
+      <option value="phone">手机</option>
+      <option value="mail">QQ或邮箱</option>
+       <option value="ucid">身份证</option>
+      
+        
+    </select>
+   <input id="sear_kwd" size="20" type="text" name="kwd" /> 
+    <input value=" 查找 " type="submit" class="submit" />&nbsp;&nbsp;
+    <a href="/index.php/index/info" target="rightMain"><span>首页</span></a> 
+    <a href="/index.php/threads/addth" target="rightMain"><span>发帖</span></a>     
+    <a href="/index.php/threads/addpost/fid/0/tid/0" target="rightMain"><span>加回复</span></a> 
+      <a href="/index.php/threads/listth" target="rightMain"><span>帖子列表</span></a> 
+           <a href="/index.php/lvyou/baominglist" target="rightMain"><span >旅游报名表</span></a> 
+     </form> 
+      
+    </div>
+  
+   
+    </div>
+     <div class="clear"></div>
+    	<div class="col-1">
+        	<div class="content" style="position:relative; overflow:hidden">
+                <iframe name="rightMain" id="rightMain" src="/index.php/index/info" frameborder="false" scrolling="auto" style="border:none;" width="100%" height="100%" allowtransparency="true"></iframe>
+        	</div>
+        </div>
+    </div>
+</div>
+<!--ul class="tab-web-panel hidden" style="position:absolute; z-index:999; background:#fff">
+		<li style="margin:0"><a href="javascript:;" onclick="_jumpURL2(1,'/index.php/admin/tags',0,this,'');" hidefocus="true" style="outline: medium none;">话题设置</a> </li>
+    	<li style="margin:0"><a href="javascript:;" onclick="_jumpURL2(4,'/index.php/admin/tagsattr',0,this,'');">版块分类</a></li>
+        <li style="margin:0"><a href="javascript:;" onclick="_jumpURL2(5,'/index.php/gather/index',0,this,'');">采集管理</a></li>
+ </ul-->
+<script type="text/javascript"> 
+ function setvelkwd(){
+		var val=document.getElementById('sear_kwd').value;
+		var one=val.substr(0,1);
+		if(val==''){
+				alert('请输入关键字!');
+				return false;
+			}else if(one==' '){
+				alert('请输入关键字!');
+				return false;
+			}
+		}
+
+if(!Array.prototype.map)
+Array.prototype.map = function(fn,scope) {
+  var result = [],ri = 0;
+  for (var i = 0,n = this.length; i < n; i++){
+	if(i in this){
+	  result[ri++]  = fn.call(scope ,this[i],i,this);
+	}
+  }
+return result;
+};
+ 
+var getWindowSize = function(){
+return ["Height","Width"].map(function(name){
+  return window["inner"+name] ||
+	document.compatMode === "CSS1Compat" && document.documentElement[ "client" + name ] || document.body[ "client" + name ]
+});
+}
+window.onload = function (){
+	if(!+"\v1" && !document.querySelector) { // for IE6 IE7
+	  document.body.onresize = resize;
+	} else { 
+	  window.onresize = resize;
+	}
+	function resize() {
+		wSize();
+		return false;
+	}
+}
+function wSize(){
+	//这是一字符串
+	var str=getWindowSize();
+	var strs= new Array(); //定义一数组
+	strs=str.toString().split(","); //字符分割
+	var heights = strs[0]-150,Body = $('body');
+	$('#rightMain').height(heights+55);   
+	//iframe.height = strs[0]-46;
+	if(strs[1]<980){
+		$('.header').css('width',980+'px');
+		$('#content').css('width',980+'px');
+		Body.attr('scroll','');
+		Body.removeClass('objbody');
+	}else{
+		$('.header').css('width','auto');
+		$('#content').css('width','auto');
+		Body.attr('scroll','no');
+		Body.addClass('objbody');
+	}
+	
+	var openClose = $("#rightMain").height()+20;
+	$('#center_frame').height(openClose);
+	$("#openClose").height(openClose+30);	
+	$("#Scroll").height(openClose-20);
+	windowW();
+}
+wSize();
+function windowW(){
+	if($('#Scroll').height()<$("#leftMain").height()){
+		$(".scroll").show();
+	}else{
+		$(".scroll").hide();
+	}
+}
+windowW();
+//左侧开关
+$("#openClose").click(function(){
+	if($(this).data('clicknum')==1) {
+		$("html").removeClass("on");
+		$(".left_menu").removeClass("left_menu_on");
+		$(this).removeClass("close");
+		$(this).data('clicknum', 0);
+		$(".scroll").show();
+	} else {
+		$(".left_menu").addClass("left_menu_on");
+		$(this).addClass("close");
+		$("html").addClass("on");
+		$(this).data('clicknum', 1);
+		$(".scroll").hide();
+	}
+	return false;
+});
+var timeout = '';
+function _jumpURL2(menuid,targetUrl,p,obj,centerlink) {
+	toggleMenu(0,'index');
+	_jumpURL(menuid,targetUrl,p,obj,centerlink) ;
+	}
+function _jumpURL(menuid,targetUrl,p,obj,centerlink) 
+{
+	$("#menuid").val(menuid);
+	$("#rightMain").attr('src', targetUrl);
+	$('.sub_menu').removeClass("on fb blue");
+	$('#_MP'+menuid).addClass("on fb blue");
+	lastText = $(obj).html();
+	headText = $('#top_menu').find(".on").find('a').html();
+	$('#current_pos').html(headText+' > '+lastText);
+	if(p=='1')  {
+		$('#center_frame').attr('src',centerlink);
+		$('#display_center_id').show();
+	//	timeout = setTimeout("content()",8000);
+	}else{
+		$('#display_center_id').hide();
+	//	clearTimeout(timeout);
+	}
+}
+$(function(){
+	var offset = $(".tab_web").offset();
+	$(".tab_web").mouseover(function(){
+			$(".tab-web-panel").css({ "left": +offset.left+4, "top": +offset.top+$('.tab_web').height()+2});
+			$(".tab-web-panel").show();
+		});
+	$(".tab_web span").mouseout(function(){hidden_site_list_1()});
+	$(".tab-web-panel").mouseover(function(){clearh();$('.tab_web a').addClass('on')}).mouseout(function(){hidden_site_list_1();$('.tab_web a').removeClass('on')});
+	//默认载入左侧菜单
+//	$("#leftMain").load("index.php?m=admin&c=index&a=getmenu&id=index&r="+Math.random());
+})
+var s = 0;
+var h;
+function hidden_site_list(){
+	s++;
+	if(s>=3) {
+		$('.tab-web-panel').hide();
+		clearInterval(h);
+		s = 0;
+	}
+}
+function clearh(){
+	if(h)clearInterval(h);
+}
+function hidden_site_list_1() {
+	h = setInterval("hidden_site_list()", 1);
+}
+function change_channel(id,name)
+{
+	//var turl = window.frames['rightMain'].document.location.href;
+	//var curl = window.frames['center_frame'].document.location.href;
+	$.get('?m=admin&c=index&a=channel&id='+id,function(html){
+		window.top.right.location.reload();
+		window.top.center_frame.location.reload();
+	});
+	$('.tab_web>a>span').html(name);
+	hidden_site_list_1();
+}
+function lock_screen()
+{
+	$('#lock_password').val('');
+	$.get('?m=admin&c=index&a=screen&s=set');
+	$('#dvLockScreen').show();
+}
+function check_screenlock()
+{
+	var pass = $('#lock_password').val();
+	if(pass=='')
+	{
+		alert('请填写解锁密码!');
+		$('#lock_password').focus();
+		return false;
+	}
+	$.get('?m=admin&c=index&a=screen&s=unset&pass='+pass,function(h){
+		if(h=='error')
+		{
+			alert('对不起解锁密码不正确');
+			return false;
+		}
+		$('#dvLockScreen').hide();
+	});
+}
+function toggleMenu(i,id)
+{
+	var vi = $('.top_menu').length;
+	//alert(vi);
+	for(v=0;v<=vi;v++)
+	{
+			//$('#_M'+i).removeClass('on'); 
+			$('.top_menu').eq(v).removeClass('on'); 
+			$('#leftMain'+v).css('display','none');
+	/*	if(i==v)
+		{
+			//$('.top_menu').eq(i).addClass('on');
+			$('#_M'+i).addClass('on');
+			
+			$('#leftMain'+v).css('display','');
+		}
+		 else
+		{
+			//$('.top_menu').eq(v).removeClass('on');
+			
+			
+		} */
+	}
+	$('#_M'+i).addClass('on');$('#leftMain'+i).css('display','');
+ 	//当点击顶部菜单后，隐藏中间的框架
+	$('#display_center_id').css('display','none');
+	//显示左侧菜单，当点击顶部时，展开左侧
+	$(".left_menu").removeClass("left_menu_on");
+	$("#openClose").removeClass("close");
+	$("html").removeClass("on");
+	$("#openClose").data('clicknum', 0);
+	$("#current_pos").data('clicknum', 1);
+	clearTimeout(timeout); 
+	/**/
+	
+	// $("#leftMain").load("index.php?m=admin&c=index&a=getmenu&id="+id+'&r='+Math.random());
+}
+function content()
+{
+	if($("#openClose").data('clicknum')!=1)
+	{
+		$(".left_menu").addClass("left_menu_on");
+		$("#openClose").addClass("close");
+		$("html").addClass("on");
+		$("#openClose").data('clicknum', 1);
+		$(".scroll").hide();
+	}
+}
+</script>
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="/css/zh-cn-system.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+ <form action="" method="post"><table width="99%"  class="list_table listback">
+	  
+		 
+		  <tr class="Row">
+			<TD align=center width=15%>操作</TD>
+			<TD width="31%" align=center>搜索关键字</TD>
+			<TD align="center" width=18%>操作时间</TD>
+			<TD align="center" width=36%>状态</TD>
+		  </TR>
+        <?php
+        $fla_arr=array('<font color="#666">隐藏</font>','显示');
+        foreach($list as $v){?>
+		  <tr>
+			<TD align=center width=15%> <input name="ids[]" type="checkbox" value="<?php echo $v['OptTime']; ?>" /></TD>
+			<TD align=left><a HREF="http://s.cnzz.net/?kw=<?php echo $v['SearchKey'];?>&site=moku.cn" target="_blank"><?php echo $v['SearchKey'];?></a> </TD>
+			<TD width=18% align="center"><?php echo date('y-m-d h:i',$v['OptTime']);?></TD>
+			<TD width=36% align="center"><?php echo $fla_arr[$v['fla']] ?></TD>
+		  </tr>
+        <?php }?>
+		 
+ 
+        <tr class="Row">
+          <TD align="left"><select name="fla">
+            <option value="show">首页显示</option>
+            <option value="del">删除</option>
+          </select>
+          <br />            <input type="submit" name="button" id="button" value="提交" /></TD>
+          <TD align="left"><?php echo  $pagehtml; ?></TD>
+          <TD colspan=11 align="left">&nbsp;</TD>
+        </TR>
+      </TABLE>
+  
+ 
+   
+</div>
+</form></body>
+</html>
