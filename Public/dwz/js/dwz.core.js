@@ -229,7 +229,7 @@ var DWZ = {
 				var iRefH = $refBox.height();
 				var iLayoutH = parseInt($this.attr("layoutH"));
 				var iH = iRefH - iLayoutH > 50 ? iRefH - iLayoutH : 50;
-				
+				 
 				if ($this.isTag("table")) {
 					$this.removeAttr("layoutH").wrap('<div layoutH="'+iLayoutH+'" style="overflow:auto;height:'+iH+'px"></div>');
 				} else {

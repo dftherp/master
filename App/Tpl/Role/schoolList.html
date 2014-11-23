@@ -1,0 +1,56 @@
+<form id="pagerForm" method="post" action="">
+	<input type="hidden" name="status" value="">
+	<input type="hidden" name="keywords" value="" />
+	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="numPerPage" value="" />
+	<input type="hidden" name="orderField" value="" />
+    <input type="hidden" name="orderDirection" value="asc" />
+     
+</form>
+<div class="pageContent">
+	<div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="<?php echo U('add');?>" target="dialog" height="360" width="550"><span>添加账号</span></a></li>
+            <li><a class="edit" href="demo_page4.html?uid={sid_user}" target="navTab"><span>修改</span></a></li>
+            <li class="line">line</li>
+
+            <li> <a title="确实要删除这些记录吗?" target="selectedTodo" rel="kids" href="demo/common/ajaxDone.html" class="delete"><span>批量删除</span></a></li>
+            
+		</ul>
+	</div>
+<table class="table" width="100%" layoutH="80">
+   <thead>  <th width="30"><input type="checkbox" group="kids" class="checkboxCtrl"></th>
+    <th width="5%" align="center"  orderfield="orders" class="DESC"  >排序</th>
+        <th width="50" height="18" align="center" class="bgimg with">区域</th>
+       
+        <th   align="left" class="bgimg with">学区名称</th>
+        <th   align="left" class="bgimg with">地址</th>
+        <th width="13%" align="left" class="bgimg with">电话</th>
+        <th width="12%" align="left" class="bgimg with">邮箱</th>
+        
+  </thead><tbody>
+    <?php   foreach($list as $opt){  ?>
+    <tr> 
+       <td><input name="kids" value="<?php echo  $item['aid'];?>" type="checkbox"></td>
+         <td  height="20" align="left" class="bottom_line"  > <?php echo $opt['orders'];?>  </td>
+        <td  height="20" align="left" class="bottom_line"  ><?php echo $city[$opt['areaid']]?></td>
+      
+        <td  height="20" align="left" class="bottom_line"  ><?php echo $opt['title']?></td>
+        <td   height="20" align="left" class="bottom_line"  >&nbsp;<?php echo $opt['addr']; ?></td>
+        <td align="left" class="bottom_line"  > <?php echo  $opt['tel'];?></td>
+        <td   align="left" class="bottom_line"  ><?php echo $opt['email']?></td>
+         
+    </tr>
+    <?php } ?>
+    </tbody>
+</table><div class="panelBar">
+		<div class="pages">
+			
+			 
+			<span> 每页20条，  共<?php echo $totalCount;?>条</span>
+		</div>
+		
+		<div class="pagination" targetType="navTab" totalCount="<?php echo $totalCount;?>" numPerPage="<?php echo $pageisze;?>" pageNumShown="10" currentPage="<?php echo $currentPage;?>"></div>
+
+	</div>
+</div>

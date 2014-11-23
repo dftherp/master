@@ -1,12 +1,24 @@
 <div class="accordion" fillSpace="sideBar">
     <div class="accordionHeader">
-        <h2><span>Folder</span>aabbcc</h2>
+        <h2><span>Folder</span>人事管理</h2>
     </div>
     <div class="accordionContent">
-        <ul class="tree treeFolder">
+        <ul class="tree treeFolder collapse">
+            <li><a href="<?php echo U('Role/index');?>" target="navTab" rel="Role">账号管理</a>
+                <ul>
+                    <li target="index" rel="1"><a href="<?php echo U('Role/index');?>" target="navTab" rel="Role">账号列表</a></li>
 
-            <li><a  class="menuSelected"  href="<?php echo U('Role/index');?>" target="navTab" rel="actionname">tttt</a></li>
 
+                </ul>
+            </li>
+            <li><a href="<?php echo U('Role/schoolList');?>" target="navTab" rel="schoolList">校区管理</a>
+                <ul>
+                    <li target="selectedObjId" rel="1"><a href="<?php echo U('Role/schoolList');?>" target="navTab" rel="schoolList">校区管理</a></li>
+                    <li target="selectedObjId" rel="2"><a href="<?php echo U('Role/cityList');?>" target="navTab" rel="cityList">城市管理</a></li>
+
+                </ul>
+            </li>
         </ul>
+    </div>
     </div>
 </div>

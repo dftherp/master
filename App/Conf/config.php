@@ -1,18 +1,17 @@
 <?php
 return array(
-    'URL_MODEL'                 =>  2, // 如果你的环境不支持PATHINFO 请设置为3
+  //  'URL_MODEL'                 =>  2, // 如果你的环境不支持PATHINFO 请设置为3
     'DB_TYPE'                   =>  'mysql',
     'DB_HOST'                   =>  '127.0.0.1',
-    'DB_NAME'                   =>  'thinkrbac',
+    'DB_NAME'                   =>  'dfth',
     'DB_USER'                   =>  'root',
-    'DB_PWD'                    =>  '11111111',
+    'DB_PWD'                    =>  '111111',
     'DB_PORT'                   =>  '3306',
 
 
 
 
-    'DB_PREFIX'                 =>  'think_',
-   // 'APP_AUTOLOAD_PATH'         =>  '@.TagLib',
+    'DB_PREFIX'                 =>  '',
     'SESSION_AUTO_START'        =>  true,
     'TMPL_ACTION_ERROR'         =>  'Public:success', // 默认错误跳转对应的模板文件
     'TMPL_ACTION_SUCCESS'       =>  'Public:success', // 默认成功跳转对应的模板文件

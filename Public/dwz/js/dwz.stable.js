@@ -29,9 +29,9 @@
 			var ths = $(">th", lastH);
 			$("th",thead).each(function(){
 				var $th = $(this);
-				$th.html("<div class='gridCol' title='"+$th.text()+"'>"+ $th.html() +"</div>");	
+				$th.html("<div class='gridCol' title='"+$th.text()+"'>"+ $th.html() +"</div>");
 			});
-			
+
 			ths.each(function(i){
 				var $th = $(this), style = aStyles[i];
 				$th.addClass(style[1]).hoverClass("hover").removeAttr("align").removeAttr("width").width(style[0]);
@@ -44,11 +44,11 @@
 
 			var tbody = $grid.find(">tbody");
 			var layoutStr = layoutH ? " layoutH='" + layoutH + "'" : "";
-			
-			tbody.wrap("<div class='gridScroller'" + layoutStr + " style='width:" + $tc.width() + "px;'><div class='gridTbody'><table style='width:" + (tlength - 20) + "px;'></table></div></div>");
+
+			tbody.wrap("<div class='gridScroller'" + layoutStr + " style='width:" + $tc.width() + "px; '><div class='gridTbody'><table style='width:" + (tlength - 20) + "px;'></table></div></div>");
 			var ftr = $(">tr:first-child", tbody);
 			var $trs = tbody.find('>tr');
-			
+
 			$trs.hoverClass().each(function(){
 				var $tr = $(this);
 				var $ftds = $(">td", this);
@@ -57,7 +57,7 @@
 					var $ftd = $($ftds[i]);
 					if (nowrapTD != "false") $ftd.html("<div>" + $ftd.html() + "</div>");
 					if (i < aStyles.length) $ftd.addClass(aStyles[i][1]);
-				}		
+				}
 				$tr.click(function(){
 					$trs.filter(".selected").removeClass("selected");
 					$tr.addClass("selected");
@@ -70,15 +70,16 @@
 					}
 				});
 			});
-			
+
 			$(">td",ftr).each(function(i){
 				if (i < aStyles.length) $(this).width(aStyles[i][0]);
-			});			
+			});
 			$grid.append("<div class='resizeMarker' style='height:300px; left:57px;display:none;'></div><div class='resizeProxy' style='height:300px; left:377px;display:none;'></div>");
-	
+
 			var scroller = $(".gridScroller", $grid);
 			scroller.scroll(function(event){
 				var header = $(".gridThead", $grid);
+
 				if(scroller.scrollLeft() > 0){
 					header.css("position", "relative");
 					var scroll = scroller.scrollLeft();
@@ -89,9 +90,9 @@
 					header.css("left", "0px");
 				}
 		        return false;
-			});		
-			
-			
+			});
+
+
 			$(">tr", thead).each(function(){
 
 				$(">th", this).each(function(i){
@@ -109,7 +110,7 @@
 								$(".resizeMarker", $grid).show().css({
 										left: $.jTableTool.getLeft(th) + 1 - $(".gridScroller", $grid).scrollLeft(),
 										top: $.jTableTool.getTop(th),
-										height:$.jTableTool.getHeight(th,$grid)									
+										height:$.jTableTool.getHeight(th,$grid)
 								});
 								$(".resizeProxy", $grid).jDrag($.extend(options, {scop:true, cellMinW:20, relObj:$(".resizeMarker", $grid)[0],
 										move: "horizontal",
@@ -123,15 +124,15 @@
 											var cellNum = $.jTableTool.getCellNum($th);
 											var oldW = $th.width(), newW = $th.width() + move;
 											var $dcell = $(">td", ftr).eq(cellNum - 1);
-											
+
 											$th.width(newW + "px");
 											$dcell.width(newW+"px");
-											
+
 											var $table1 = $(thead).parent();
 											$table1.width(($table1.width() - oldW + newW)+"px");
 											var $table2 = $(tbody).parent();
 											$table2.width(($table2.width() - oldW + newW)+"px");
-											
+
 											$(".resizeMarker,.resizeProxy", $grid).hide();
 										}
 									})
@@ -145,7 +146,7 @@
 					});
 				});
 			});
-		
+
 			function _resizeGrid(){
 				$("div.j-resizeGrid").each(function(){
 					var width = $(this).innerWidth();
@@ -157,8 +158,8 @@
 			$(window).unbind(DWZ.eventType.resizeGrid).bind("resizeGrid", _resizeGrid);
 		});
 	};
-	
-	
+
+
 	$.jTableTool = {
 		getLeft:function(obj) {
 			var width = 0;

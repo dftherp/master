@@ -2,48 +2,85 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>ThinkPHP管理系统登录</title>
-<load href='__PUBLIC__/Css/style.css' />
-<load href="__PUBLIC__/Js/Base.js" />
-<load href="__PUBLIC__/Js/prototype.js" />
-<load href="__PUBLIC__/Js/mootools.js" />
-<load href="__PUBLIC__/Js/Think/ThinkAjax.js" />
-<load href="__PUBLIC__/Js/common.js" />
- <script language="JavaScript">
-<!--
-var PUBLIC	 =	 '__PUBLIC__';
-function keydown(e){
-	var e = e || event;
-	if (e.keyCode==13)
-	{
-	ThinkAjax.sendForm('form1','__URL__/checkLogin/',loginHandle,'result');
-	}
+<title>系统管理登录</title>
+ 
+<style type="text/css"> 
+body{
+	margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; font-size:12px; font-family:Verdana, Geneva, sans-serif,"宋体"; font-size:12px;
 }
-function fleshVerify(){ 
-	//重载验证码
-	var timenow = new Date().getTime();
-	$('verifyImg').src= '__URL__/verify/'+timenow;
+ul,li,p,form{
+	margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; list-style-type:none;
 }
-//-->
-</script>
+#main_login{
+	width:1000px; margin:0 auto; overflow:hidden; height:700px;
+}
+.main_bg{
+	background:url(/images/main_login.png) no-repeat center top;
+}
+.main_logo{
+	padding-top:50px; height:70px;
+}
+.login_box{
+	height:320px; width:390px; margin-left:560px; margin-top:60px;
+}
+.login_box .title{
+	height:38px; line-height:38px; padding-left:10px; font-size:16px; font-family:"微软雅黑"; color:#fff;
+}
+.login_box .content{
+	padding-left:140px; height:235px; padding-top:15px;
+}
+.login_box .content li{
+	height:41px; padding-bottom:12px;
+}
+.login_box .content .wh{
+	height:36px; width:200px; line-height:36px; font-family:Verdana; font-size:18px; border-bottom: #AEAEAE 1px solid; POSITION: relative; padding-left:4px;
+border-left:#AEAEAE 1px solid; padding-bottom:0px; line-height:34px; padding-right:4px; color:#000; font-size:20px; border-top:#AEAEAE 1px solid; border-right:#AEAEAE 1px solid; padding-top: 0px; border-radius: 3px; -webkit-border-radius: 3px; -webkit-transition: -webkit-box-shadow .1s linear;-moz-transition: box-shadow .1s linear; outline-style:none; background:url(/manage/images/login_bg.png) repeat-x;
+}
+.login_box .content .yzm{
+	height:36px; width:100px; line-height:36px; font-family:Verdana; font-size:18px; border-bottom: #AEAEAE 1px solid; POSITION: relative; padding-left:4px;
+border-left:#AEAEAE 1px solid; padding-bottom:0px; line-height:34px; padding-right:4px; color:#494949; font-size:20px; border-top:#AEAEAE 1px solid; border-right:#AEAEAE 1px solid; padding-top: 0px; border-radius: 3px; -webkit-border-radius: 3px; -webkit-transition: -webkit-box-shadow .1s linear;-moz-transition: box-shadow .1s linear; outline-style:none; background:url(/manage/images/login_bg.png) repeat-x;
+}
+.login_box .content .bmit{
+	height:47px; border:0px; width:144px; background:url(/images/login_bimt.png) no-repeat; color:#fff; font-size:24px; font-weight:bold; cursor:pointer;
+}
+.login_text{
+	height:140px; width:550px; margin-left:450px; padding-top:30px; line-height:25px; font-size:16px; font-family:"微软雅黑",'宋体'; color:#999;
+}
+</style>
 </head>
-<body onLoad="document.login.account.focus()" >
-<form method='post' name="login" id="form1" ACTION="__URL__/checkLogin">
-<div class="tCenter hMargin">
-<table id="checkList" class="login shadow" cellpadding=0 cellspacing=0 >
-<tr><td height="3" colspan="2" class="topTd" ></td></tr>
-<tr class="row" ><Th colspan="2" class="tCenter space" ><img src="__PUBLIC__/Images/preview_f2.png" width="32" height="32" border="0" alt="" align="absmiddle"> ThinkPHP管理系统登录</th></tr>
-<tr><td height="3" colspan="2" class="topTd" ></td></tr>
-<tr class="row" ><td class="tRight" width="25%">帐 号：</td><td><input type="text" class="medium bLeftRequire" check="Require" warning="请输入帐号" name="account"></td></tr>
-<tr class="row" ><td class="tRight">密 码：</td><td><input type="password" class="medium bLeftRequire" check="Require" warning="请输入密码" name="password"></td></tr>
-<tr class="row" ><td class="tRight">验证码：</td><td><input type="text" onKeyDown="keydown(event)" class="small bLeftRequire" check="Require" warning="请输入验证码" name="verify"> <img id="verifyImg" SRC="__URL__/verify/" onClick="fleshVerify()" BORDER="0" ALT="点击刷新验证码" style="cursor:pointer" align="absmiddle"></td></tr>
-<tr class="row" ><td class="tCenter" align="justify" colspan="2">
-<input type="submit" value="登 录" class="submit medium hMargin">
-</td></tr>
-<tr><td height="3" colspan="2" class="bottomTd" ></td></tr>
-</table>
-<div class="result">测试账号(用户名/密码) 管理员：admin/admin 领导：leader/leader 员工：member/member 演示：demo/demo 本系统仅用于学习用途</div>
+ 
+<body>
+<div id="main_login" class="main_bg">
+	<div class="main_logo"></div>
+    <div class="login_box">
+    	<div class="title"><b>系统管理登录窗口</b></div>
+        <div class="content">
+        	<form action="<?php echo U('Public/checkLogin');?>" method="post" onSubmit="return checkSubmit();">
+            	<ul>
+                	<li>
+                	    <input name="username" type="text" class="wh" id="username" />
+                	</li>
+                    <li>
+                	    <input name="password" type="password" class="wh" id="password" />
+                	</li>
+                    <li>
+                	    <input name="verifycode" type="text" class="yzm" id="verifycode" /> <img src="<?php echo U('Public/imgcode');?>" align="absmiddle" style="cursor:hand; margin-left:5px;" alt="看不清？点击更换图片！" onClick="this.src='<?php echo U('Public/imgcode');?>?r='+Math.random()" id="verifycodepic">
+                	</li>
+                	<li style="padding-top:10px; height:47px;">
+                    	<div style="height:47px;">
+                    	    <input name="" type="submit" class="bmit" id="button" value="登  录" />
+                            <input name="send" type="hidden" value="login" />
+               	  		</div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+    <div class="login_text">
+   	  </div>
 </div>
-</form>
+<script language="javascript" src="/js/jquery.min.js"></script>
+<script language="javascript" src="/js/common.func.js"></script>
+ 
 </body>
 </html>

@@ -3,10 +3,10 @@
 class CommonAction extends Action {
     public $Myrbac;
     function _initialize() {
+        import('@.ORG.Util.Myrbac');
+        $this->Myrbac=new Myrbac();
         // 用户权限检查
         if (C('USER_AUTH_ON') && !in_array(MODULE_NAME, explode(',', C('NOT_AUTH_MODULE')))) {
-            import('@.ORG.Util.Myrbac');
-            $this->Myrbac=new Myrbac();
             if (! $this->Myrbac->AccessDecision()) {
                 //检查认证识别号
                 if (!$this->Myrbac->getUser()) {
@@ -25,38 +25,11 @@ class CommonAction extends Action {
         }
     }
 
-    public function index() {
-        //列表过滤器，生成查询Map对象
-        $map = $this->_search();
-        if (method_exists($this, '_filter')) {
-            $this->_filter($map);
-        }
-        $name = $this->getActionName();
-        $model = D($name);
-        if (!empty($model)) {
-            $this->_list($model, $map);
-        }
-        $this->display();
-        return;
+    public function menu(){
+        $content = $this->fetch('Role/menu');
+       // $msg->setInfo('content', $content)->setMessage(true, C('SUCCESS_MSG'));
+        $this->ajaxReturn($content);
     }
-
-    /**
-      +----------------------------------------------------------
-     * 取得操作成功后要返回的URL地址
-     * 默认返回当前模块的默认操作
-     * 可以在action控制器中重载
-      +----------------------------------------------------------
-     * @access public
-      +----------------------------------------------------------
-     * @return string
-      +----------------------------------------------------------
-     * @throws ThinkExecption
-      +----------------------------------------------------------
-     */
-    function getReturnUrl() {
-        return __URL__ . '?' . C('VAR_MODULE') . '=' . MODULE_NAME . '&' . C('VAR_ACTION') . '=' . C('DEFAULT_ACTION');
-    }
-
     /**
       +----------------------------------------------------------
      * 根据表单生成查询条件
@@ -104,234 +77,44 @@ class CommonAction extends Action {
      * @throws ThinkExecption
       +----------------------------------------------------------
      */
-    protected function _list($model, $map, $sortBy = '', $asc = false) {
+    public  function getList($model, $where='', $fillds='*', $order='',$pageSize=20, $sortBy = 'desc') {
         //排序字段 默认为主键名
-        if (isset($_REQUEST ['_order'])) {
-            $order = $_REQUEST ['_order'];
-        } else {
-            $order = !empty($sortBy) ? $sortBy : $model->getPk();
+        if ($_POST ['orderField']) {
+            $order = $_POST ['orderField'];
         }
         //排序方式默认按照倒序排列
-        //接受 sost参数 0 表示倒序 非0都 表示正序
-        if (isset($_REQUEST ['_sort'])) {
-            $sort = $_REQUEST ['_sort'] ? 'asc' : 'desc';
-        } else {
-            $sort = $asc ? 'asc' : 'desc';
+
+        if ($_POST ['orderDirection']) {
+            $sortBy = $_POST ['orderDirection'];
+        }
+        if(empty($order)){
+            $order =$model->getPk();
         }
         //取得满足条件的记录数
-        $count = $model->where($map)->count('id');
-        if ($count > 0) {
-            import("@.ORG.Util.Page");
-            //创建分页对象
-            if (!empty($_REQUEST ['listRows'])) {
-                $listRows = $_REQUEST ['listRows'];
-            } else {
-                $listRows = '';
-            }
-            $p = new Page($count, $listRows);
-            //分页查询数据
+        $count = $model->where($where)->count($model->getPk());
 
-            $voList = $model->where($map)->order("`" . $order . "` " . $sort)->limit($p->firstRow . ',' . $p->listRows)->select();
-            //echo $model->getlastsql();
-            //分页跳转的时候保证查询条件
-            foreach ($map as $key => $val) {
-                if (!is_array($val)) {
-                    $p->parameter .= "$key=" . urlencode($val) . "&";
-                }
-            }
-            //分页显示
-            $page = $p->show();
-            //列表排序显示
-            $sortImg = $sort; //排序图标
-            $sortAlt = $sort == 'desc' ? '升序排列' : '倒序排列'; //排序提示
-            $sort = $sort == 'desc' ? 1 : 0; //排序方式
+            import("@.ORG.Util.Page");
+
+            $p = new Page($count, $pageSize);
+            //分页查询数据
+            $voList = $model->where($where)->order('`' . $order . '` ' . $sortBy)->limit($p->firstRow . ',' . $p->listRows)->field($fillds)->select();
+
             //模板赋值显示
             $this->assign('list', $voList);
-            $this->assign('sort', $sort);
+            $this->assign('sort', $sortBy);
             $this->assign('order', $order);
-            $this->assign('sortImg', $sortImg);
-            $this->assign('sortType', $sortAlt);
-            $this->assign("page", $page);
-        }
-        cookie('_currentUrl_', __SELF__);
-        return;
-    }
+            $this->assign('currentPage', $p->nowPage);
+            $this->assign('totalCount', $count);
+           $this->assign('pageisze', $pageSize);
 
-    function insert() {
-        $name = $this->getActionName();
-        $model = D($name);
-        if (false === $model->create()) {
-            $this->error($model->getError());
-        }
-        //保存当前数据对象
-        $list = $model->add();
-        if ($list !== false) { //保存成功
-            $this->success('新增成功!',cookie('_currentUrl_'));
-        } else {
-            //失败提示
-            $this->error('新增失败!');
-        }
     }
+     public function setSearchForm(){
 
-    function read() {
-        $this->edit();
-    }
+     }
+        public function setPageHeader(){
 
-    function edit() {
-        $name = $this->getActionName();
-        $model = M($name);
-        $id = $_REQUEST [$model->getPk()];
-        $vo = $model->getById($id);
-        $this->assign('vo', $vo);
-        $this->display();
-    }
+        }
 
-    function update() {
-        $name = $this->getActionName();
-        $model = D($name);
-        if (false === $model->create()) {
-            $this->error($model->getError());
-        }
-        // 更新数据
-        $list = $model->save();
-        if (false !== $list) {
-            //成功提示
-            $this->success('编辑成功!',cookie('_currentUrl_'));
-        } else {
-            //错误提示
-            $this->error('编辑失败!');
-        }
-    }
-
-    /**
-      +----------------------------------------------------------
-     * 默认删除操作
-      +----------------------------------------------------------
-     * @access public
-      +----------------------------------------------------------
-     * @return string
-      +----------------------------------------------------------
-     * @throws ThinkExecption
-      +----------------------------------------------------------
-     */
-    public function delete() {
-        //删除指定记录
-        $name = $this->getActionName();
-        $model = M($name);
-        if (!empty($model)) {
-            $pk = $model->getPk();
-            $id = $_REQUEST [$pk];
-            if (isset($id)) {
-                $condition = array($pk => array('in', explode(',', $id)));
-                $list = $model->where($condition)->setField('status', - 1);
-                if ($list !== false) {
-                    $this->success('删除成功！');
-                } else {
-                    $this->error('删除失败！');
-                }
-            } else {
-                $this->error('非法操作');
-            }
-        }
-    }
-
-    public function foreverdelete() {
-        //删除指定记录
-        $name = $this->getActionName();
-        $model = D($name);
-        if (!empty($model)) {
-            $pk = $model->getPk();
-            $id = $_REQUEST [$pk];
-            if (isset($id)) {
-                $condition = array($pk => array('in', explode(',', $id)));
-                if (false !== $model->where($condition)->delete()) {
-                    $this->success('删除成功！');
-                } else {
-                    $this->error('删除失败！');
-                }
-            } else {
-                $this->error('非法操作');
-            }
-        }
-        $this->forward();
-    }
-
-    public function clear() {
-        //删除指定记录
-        $name = $this->getActionName();
-        $model = D($name);
-        if (!empty($model)) {
-            if (false !== $model->where('status=1')->delete()) {
-                $this->success(L('_DELETE_SUCCESS_'),$this->getReturnUrl());
-            } else {
-                $this->error(L('_DELETE_FAIL_'));
-            }
-        }
-        $this->forward();
-    }
-
-    /**
-      +----------------------------------------------------------
-     * 默认禁用操作
-     *
-      +----------------------------------------------------------
-     * @access public
-      +----------------------------------------------------------
-     * @return string
-      +----------------------------------------------------------
-     * @throws FcsException
-      +----------------------------------------------------------
-     */
-    public function forbid() {
-        $name = $this->getActionName();
-        $model = D($name);
-        $pk = $model->getPk();
-        $id = $_REQUEST [$pk];
-        $condition = array($pk => array('in', $id));
-        $list = $model->forbid($condition);
-        if ($list !== false) {
-            $this->success('状态禁用成功',$this->getReturnUrl());
-        } else {
-            $this->error('状态禁用失败！');
-        }
-    }
-
-    public function checkPass() {
-        $name = $this->getActionName();
-        $model = D($name);
-        $pk = $model->getPk();
-        $id = $_GET [$pk];
-        $condition = array($pk => array('in', $id));
-        if (false !== $model->checkPass($condition)) {
-            $this->success('状态批准成功！',$this->getReturnUrl());
-        } else {
-            $this->error('状态批准失败！');
-        }
-    }
-
-    public function recycle() {
-        $name = $this->getActionName();
-        $model = D($name);
-        $pk = $model->getPk();
-        $id = $_GET [$pk];
-        $condition = array($pk => array('in', $id));
-        if (false !== $model->recycle($condition)) {
-            $this->success('状态还原成功！',$this->getReturnUrl());
-        } else {
-            $this->error('状态还原失败！');
-        }
-    }
-
-    public function recycleBin() {
-        $map = $this->_search();
-        $map ['status'] = - 1;
-        $name = $this->getActionName();
-        $model = D($name);
-        if (!empty($model)) {
-            $this->_list($model, $map);
-        }
-        $this->display();
-    }
 
     /**
       +----------------------------------------------------------

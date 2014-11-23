@@ -289,7 +289,7 @@ a:hover {text-decoration:underline;}
 .grid .gridHeader { display:block; overflow:hidden; width:auto;}
 .grid .gridThead { }
 
-.grid .gridScroller { display:block; overflow:auto; position:relative;}
+.grid .gridScroller { display:block; overflow:auto; position:relative; }
 .grid .gridTbody { }
 
 .grid table { border:0; border-collapse:collapse;table-layout:fixed;}

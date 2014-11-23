@@ -42,6 +42,10 @@ class Myrbac
         else
             return session(C('USER_AUTH_KEY'), $tostring);
     }
+    public function isAdminStatus(){
+        $admin=$this->getUser();
+        return $admin[C('ADMIN_AUTH_KEY')];
+    }
     /**
      * 获取保存在 session 中的用户数据
      *
@@ -75,7 +79,7 @@ class Myrbac
         if (null === $user) $user =$this->getUser();
         // 如果使用普通权限模式，保存当前用户的访问权限列表
         // 对管理员开发所有权限
-        if (C('USER_AUTH_TYPE') != 2 && !$user[C('ADMIN_AUTH_KEY')])
+        if (C('USER_AUTH_TYPE') != 2 && !$this->isAdminStatus())
             $this->setSession('_ACCESS_LIST', $this->getAccessList($user[C('USER_KEY_ID')]));
         return;
     }
@@ -109,7 +113,8 @@ class Myrbac
         if ($this->checkAccess()) {
             //存在认证识别号，则进行进一步的访问决策
             $accessGuid = md5($appName . MODULE_NAME . ACTION_NAME);
-            $auth=$this->getSession(C('ADMIN_AUTH_KEY'));
+
+            $auth=$this->isAdminStatus();
             if (empty($auth)) {
                 if (C('USER_AUTH_TYPE') == 2) {
                     //加强验证和即时验证模式 更加安全 后台权限修改可以即时生效
