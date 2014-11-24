@@ -101,12 +101,31 @@ class CommonAction extends Action {
 
             //模板赋值显示
             $this->assign('list', $voList);
-            $this->assign('sort', $sortBy);
+            $this->assign('sortBy', $sortBy);
             $this->assign('order', $order);
             $this->assign('currentPage', $p->nowPage);
             $this->assign('totalCount', $count);
            $this->assign('pageisze', $pageSize);
+             import("@.ORG.Util.Jui");
+            $jui=new Jui();
+        $this->assign('PagerForm', $jui->listPagerForm());
+        $this->assign('Pagination', $jui->ListPagination($p));
+        return $voList;
 
+    }
+    public function getNavTabId($action='',$model=''){
+        if(empty($action)){
+            $action=ACTION_NAME;
+        }
+        if(empty($model)){
+            $model=MODULE_NAME;
+        }
+        return  $action . $model;
+    }
+    public function returnJUIAjax($result, $variables = null, $message = '', $callbackType = 'closeCurrent', $formMessage = null){
+        import("@.ORG.Util.Jui");
+        $jui=new Jui();
+        $jui->setJuiResult($result, $variables, $message, $callbackType, $formMessage);
     }
      public function setSearchForm(){
 

@@ -1,0 +1,106 @@
+<form method="post" action="<?php echo U('Role/schoolCreate');?>" class="pageForm" onsubmit="return validateCallback(this, dialogAjaxDone)">
+
+    <div class="pageFormContent" layouth="57" style="height: 200px; overflow: auto;">
+
+        <table width="99%">
+    <tr>
+        <td height="30" align="right" >地区：</td>
+        <td  valign="middle" >
+
+            <select id="HomeAreaID" name="HomeAreaID" onchange="redirect('HomeSubAreaID', this.value, 0, false, true);">
+                <option value="0">请选择..</option>
+                <option value="11" >北京</option>
+                <option value="12" >天津</option>
+                <option value="31" selected="selected" >上海</option>
+                <option value="50" >重庆</option>
+                <option value="13" >河北</option>
+                <option value="14" >山西</option>
+                <option value="15" >内蒙古</option>
+                <option value="21" >辽宁</option>
+                <option value="22" >吉林</option>
+                <option value="23" >黑龙江</option>
+                <option value="32" >江苏</option>
+                <option value="33" >浙江</option>
+                <option value="34" >安徽</option>
+                <option value="35" >福建</option>
+                <option value="36" >江西</option>
+                <option value="37" >山东</option>
+                <option value="41" >河南</option>
+                <option value="42" >湖北</option>
+                <option value="43" >湖南</option>
+                <option value="44" >广东</option>
+                <option value="45" >广西</option>
+                <option value="46" >海南</option>
+                <option value="51" >四川</option>
+                <option value="52" >贵州</option>
+                <option value="53" >云南</option>
+                <option value="54" >西藏</option>
+                <option value="61" >陕西</option>
+                <option value="62" >甘肃</option>
+                <option value="63" >青海</option>
+                <option value="64" >宁夏</option>
+                <option value="65" >新疆</option>
+                <option value="81" >香港</option>
+                <option value="71" >台湾</option>
+                <option value="82" >澳门</option>
+                <option value="99" >国外</option>
+            </select><select id="HomeSubAreaID" name="post[areaid]"  >
+            <option value="" selected="selected">请选择..</option>
+            <option value="3101">黄浦</option>
+            <option value="3103">卢湾</option>
+            <option value="3104">徐汇</option>
+            <option value="3105">长宁</option>
+            <option value="3106">静安</option>
+            <option value="3107">普陀</option>
+            <option value="3108">闸北</option>
+            <option value="3109">虹口</option>
+            <option value="3110">杨浦</option>
+            <option value="3112">闵行</option>
+            <option value="3113">宝山</option>
+            <option value="3114">嘉定</option>
+            <option value="3115">浦东</option>
+            <option value="3116">金山</option>
+            <option value="3117">松江</option>
+            <option value="3125">南汇</option>
+            <option value="3126">奉贤</option>
+            <option value="3129">青浦</option>
+            <option value="3130">崇明</option>
+        </select></td>
+    </tr>
+    <tr>
+        <td width="8%" height="30" align="right">名称：</td>
+        <td width="92%"  ><input id="title" size="30" name="post[title]"  class="required textInput" value="<?php echo $info['title'] ?>" />
+            推荐
+            <input name="post[tj]" type="checkbox" value="<?php echo time(); ?>" <?php echo $info['tj']?'checked="checked"':'' ?>  />
+            <input name="id" type="hidden" id="id" value="<?php echo $info['id']; ?>" /></td>
+    </tr>
+    <tr id="mt">
+        <td height="30" align="right" >地址：</td>
+        <td ><input size="30"  name="post[addr]" class="required textInput" value="<?php echo $info['addr'] ?>" />
+            长宁区xx路xx161号</td>
+    </tr>
+    <tr id="mc"  >
+        <td height="30" align="right"  >电话：</td>
+        <td  ><input name="post[tel]" size="30"  type="text" class="required textInput" value="<?php echo $info['tel'] ?>" />
+            021-62226811</td>
+    </tr>
+    <tr>
+        <td height="30" align="right"  >邮箱：</td>
+        <td  >
+            <input name="post[email]" type="text" value="<?php echo $info['email'] ?>"  size="30" />
+            hr@tong.com</td>
+    </tr>
+    
+</table>
+    </div>
+    <div class="formBar">
+        <ul>
+            <li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+            <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+        </ul>
+    </div>    </form>
+<script type="text/javascript" src="/js/zone.js"></script>
+<script type="text/javascript" src="/js/city.js"></script>
+<script language="javascript">
+ redirect('HomeSubAreaID',"<?php echo substr($info['areaid'],0,2); ?>", "<?php echo $info['areaid'] ?>", false, true);
+</script>

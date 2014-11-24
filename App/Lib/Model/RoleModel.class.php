@@ -1,6 +1,7 @@
 <?php
 // 角色模型
 class RoleModel extends CommonModel {
+    protected $tableName='erp_role';
     public $_validate = array(
         array('name','require','名称必须'),
         );
@@ -9,7 +10,11 @@ class RoleModel extends CommonModel {
         array('create_time','time',self::MODEL_INSERT,'function'),
         array('update_time','time',self::MODEL_UPDATE,'function'),
         );
+    public function getRole($pid){
 
+        return $this->where('pid='.$pid)->select();
+
+    }
     function setGroupApps($groupId,$appIdList) {
         if(empty($appIdList)) {
             return true;

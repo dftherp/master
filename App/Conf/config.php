@@ -1,5 +1,6 @@
 <?php
 return array(
+    'LOAD_EXT_CONFIG' => 'erpConfig',
   //  'URL_MODEL'                 =>  2, // 如果你的环境不支持PATHINFO 请设置为3
     'DB_TYPE'                   =>  'mysql',
     'DB_HOST'                   =>  '127.0.0.1',

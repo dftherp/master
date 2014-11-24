@@ -4,34 +4,34 @@
 	<input type="hidden" name="pageNum" value="1" />
 	<input type="hidden" name="numPerPage" value="" />
 	<input type="hidden" name="orderField" value="" />
-    <input type="hidden" name="orderDirection" value="asc" />
+    <input type="hidden" name="orderDirection" value="<?php echo $sortBy;?>" />
      
 </form>
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="<?php echo U('add');?>" target="dialog" height="360" width="550"><span>添加账号</span></a></li>
-            <li><a class="edit" href="demo_page4.html?uid={sid_user}" target="navTab"><span>修改</span></a></li>
+			<li><a class="add" href="<?php echo U('Role/schooladd');?>" target="dialog" height="360" width="650"><span>添加校区</span></a></li>
+            <li><a class="edit" href="<?php echo U('Role/schooladd');?>?id={sid_user}" target="dialog" height="360" width="650"><span>修改</span></a></li>
             <li class="line">line</li>
 
-            <li> <a title="确实要删除这些记录吗?" target="selectedTodo" rel="kids" href="demo/common/ajaxDone.html" class="delete"><span>批量删除</span></a></li>
+            <li> <a title="确实要删除这些记录吗?" target="selectedTodo" rel="kids" href="<?php echo U('Role/schoolDelete');?>" class="delete"><span>批量删除</span></a></li>
             
 		</ul>
 	</div>
 <table class="table" width="100%" layoutH="80">
-   <thead>  <th width="30"><input type="checkbox" group="kids" class="checkboxCtrl"></th>
-    <th width="5%" align="center"  orderfield="orders" class="DESC"  >排序</th>
-        <th width="50" height="18" align="center" class="bgimg with">区域</th>
+   <thead>  <tr><th width="30"><input type="checkbox" group="kids" class="checkboxCtrl"></th>
+    <th width="5%" align="center"  orderfield="orders" class="<?php echo $sortBy;?>"  >排序</th>
+        <th width="50" height="18" align="center" class="bgimg with">城市</th>
        
         <th   align="left" class="bgimg with">学区名称</th>
         <th   align="left" class="bgimg with">地址</th>
         <th width="13%" align="left" class="bgimg with">电话</th>
         <th width="12%" align="left" class="bgimg with">邮箱</th>
-        
+        </tr>
   </thead><tbody>
     <?php   foreach($list as $opt){  ?>
-    <tr> 
-       <td><input name="kids" value="<?php echo  $item['aid'];?>" type="checkbox"></td>
+    <tr  target="sid_user" rel="<?php echo  $opt['id'];?>">
+       <td><input name="kids" value="<?php echo  $opt['id'];?>" type="checkbox"></td>
          <td  height="20" align="left" class="bottom_line"  > <?php echo $opt['orders'];?>  </td>
         <td  height="20" align="left" class="bottom_line"  ><?php echo $city[$opt['areaid']]?></td>
       

@@ -9,45 +9,12 @@
 </form>
 
 
-<!--div class="pageHeader">
-	<form onsubmit="return navTabSearch(this);" action="demo_page1.html" method="post">
-	<div class="searchBar">
-
-		<table class="searchContent">
-			<tr>
-				<td>
-					我的客户：<input type="text" name="keyword" />
-				</td>
-				<td>
-					<select class="combox" name="province">
-						<option value="">所有省市</option>
-						<option value="北京">北京</option>
-						<option value="上海">上海</option>
-						<option value="天津">天津</option>
-						<option value="重庆">重庆</option>
-						<option value="广东">广东</option>
-					</select>
-				</td>
-				<td>
-					建档日期：<input type="text" class="date" readonly="true" />
-				</td>
-			</tr>
-		</table>
-		<div class="subBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
-				<li><a class="button" href="demo_page6.html" target="dialog" mask="true" title="查询框"><span>高级检索</span></a></li>
-			</ul>
-		</div>
-	</div>
-	</form>
-</div-->
 
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="<?php echo U('add');?>" target="dialog"  width="550"><span>添加账号</span></a></li>
-            <li><a class="edit" href="demo_page4.html?uid={sid_user}" target="navTab"><span>修改</span></a></li>
+			<li><a class="add" href="<?php echo U('Role/adminadd');?>" target="dialog"  width="550"><span>添加账号</span></a></li>
+            <li><a class="edit" href="<?php echo U('Role/adminadd');?>?uid={sid_user}" target="navTab"><span>修改</span></a></li>
             <li class="line">line</li>
 
             <li> <a title="确实要删除这些记录吗?" target="selectedTodo" rel="kids" href="demo/common/ajaxDone.html" class="delete"><span>批量删除</span></a></li>

@@ -1,0 +1,43 @@
+<?php echo $PagerForm;?>
+<div class="pageContent">
+  <div class="panelBar">
+		<ul class="toolBar">
+			<li><a class="add" href="<?php echo U('Role/sectionadd');?>" target="dialog" height="360" width="650"><span>添加</span></a></li><li class="line">line</li>
+            <li><a class="edit" href="<?php echo U('Role/sectionedit');?>?id={sid_user}" target="dialog" height="360" width="650"><span>修改</span></a></li>
+            
+
+            
+		</ul>
+	</div>
+    <table class="table" width="100%" layoutH="80">
+
+  <thead><tr >
+    <th width="17%" height="24">部门</th>
+    <th width="40%">&nbsp;&nbsp;&nbsp;&nbsp;角色/职位</th>
+    <th>操作</th>
+    </tr>     
+  </thead> 
+  <tbody>
+<?php  foreach($list as $p){
+$count=count($role[$p['roleid']]);
+$oneRole=array_shift($role[$p['roleid']] );
+?>
+  <tr>
+    <td width="17%" rowspan="<?php echo $count; ;?>">&nbsp;&nbsp;<?php echo $p['name']; ?></td>
+    <td width="39%" height="52"  bgcolor="#FFFFFF"><?php echo $oneRole['name'];?></td>
+    <td width="44%"  bgcolor="#FFFFFF">&nbsp; <a href="#" onclick="editrole('<?php echo $r['name'] ?>',<?php echo $r['roleid'] ?>)" class="del">修改</a> | 
+    <a href="/index.php/power/delrole/id/<?php echo $r['roleid'] ?>" onclick="return confirm('确定删除吗?')"  class="del">删除</a> |
+    <a href="/index.php/power/setpower/kid/<?php echo $r['roleid'] ?>"  class="del">授权</a></td>
+  </tr>
+  <?php foreach( $role[$p['roleid']] as $r){?>
+  <tr>
+    <td height="20"><?php echo $r['name'] ?></td>
+    <td  bgcolor="#FFFFFF">&nbsp; <a href="#" onclick="editrole('<?php echo $r['name'] ?>',<?php echo $r['roleid'] ?>)" class="del">修改</a> | 
+    <a href="/index.php/power/delrole/id/<?php echo $r['roleid'] ?>" onclick="return confirm('确定删除吗?')"  class="del">删除</a> |
+    <a href="/index.php/power/setpower/kid/<?php echo $r['roleid'] ?>"  class="del">授权</a></td>
+  </tr>
+   
+  <?php }}?></tbody>
+</table>
+<?php echo $Pagination;?>
+</div>

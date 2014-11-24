@@ -1,0 +1,75 @@
+<form method="post" action="demo/common/ajaxDone.html" class="pageForm" onsubmit="return validateCallback(this, dialogAjaxDone)">
+
+    <div class="pageFormContent" layouth="57" style="height: 200px; overflow: auto;"><table width="480" cellpadding=0 cellspacing=0 >
+    <tr>
+        <td width="76" height="30" align="right" class="tRight" >登录名：</td>
+        <td width="402" class="tLeft" > <input name="name" class="required textInput valid" type="text" size="20" value="" alt="请输入登录名" id="name_4034">
+          <span class="info">&nbsp;&nbsp;  英文或邮箱</span></td>
+    </tr>
+    <tr>
+        <td height="30" align="right" class="tRight" >姓名：</td>
+        <td class="tLeft" ><input name="uname" class="required textInput valid" type="text" size="20" value="" alt="请输入姓名" id="name_" />
+             
+        </td>
+    </tr>
+    <tr>
+        <td height="30" align="right" class="tRight">性别：</td>
+        <td class="tLeft"> <select class="combox" name="sex">
+		<option value="1">男</option>
+		<option value="2">女</option>
+		 
+	</select></td>
+    </tr>
+    <tr>
+      <td height="30" align="right" class="tRight tTop">手机<span class="tRight">：</span></td>
+      <td class="tLeft"><input name="name_2" class="required  phone" type="text" size="20" value="" alt="请输入手机" id="name_2" /></td>
+    </tr>
+    <tr>
+      <td height="30" align="right" class="tRight tTop">密码<span class="tRight">：</span></td>
+      <td class="tLeft"><input name="" minlength="6"  class="required textInput valid" type="text" size="20" value="" alt="请输入登录密码" id="name_3" /></td>
+    </tr>
+    <tr>
+      <td height="30" align="right" class="tRight tTop">校区：</td>
+      <td class="tLeft">&nbsp;<select class="combox" name="schoolId">
+      <?php foreach($list as $scholl){?>
+		<option value="<?php echo $scholl['id'] ?>"><?php echo $scholl['title'] ?></option>
+	 <?php }?>
+	</select></td>
+    </tr>
+    <tr>
+      <td height="30" align="right" class="tRight tTop">部门：</td>
+      <td class="tLeft"><select class="combox" name="test2">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select></td>
+    </tr>
+    <tr>
+      <td height="30" align="right" class="tRight tTop">权限：</td>
+      <td class="tLeft"><select class="combox" name="test3">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select></td>
+    </tr>
+
+    </table>
+   </div>
+<div class="formBar">
+    <ul>
+        <li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+        <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+    </ul>
+</div>    </form>
